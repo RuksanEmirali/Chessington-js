@@ -1,4 +1,5 @@
 import 'chai/register-should';
+import 'chai/register-should';
 import Bishop from '../../../src/engine/pieces/bishop';
 import Pawn from '../../../src/engine/pieces/pawn';
 import Player from '../../../src/engine/player';
