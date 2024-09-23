@@ -12,22 +12,38 @@ export default class Pawn extends Piece {
         let location = board.findPiece(this)
         let posMoves = []
         if (this.player === Player.WHITE) {
-            if (board.getPiece(Square.at(location.row + 1, location.col)) === undefined) {
-                posMoves.push(Square.at(location.row + 1, location.col))
-            }
-            if (location.row === 1 
-                && board.getPiece(Square.at(location.row + 1, location.col)) === undefined
-                && board.getPiece(Square.at(location.row + 2, location.col)) === undefined) {
-                posMoves.push(Square.at(location.row + 2, location.col))
+            if(location.row < 7) {
+                if (board.getPiece(Square.at(location.row + 1, location.col)) === undefined) {
+                    posMoves.push(Square.at(location.row + 1, location.col))
+                }
+                if (location.row === 1 
+                    && board.getPiece(Square.at(location.row + 1, location.col)) === undefined
+                    && board.getPiece(Square.at(location.row + 2, location.col)) === undefined) {
+                    posMoves.push(Square.at(location.row + 2, location.col))
+                }
+                if (board.getPiece(Square.at(location.row + 1, location.col + 1)) != undefined){
+                    posMoves.push(Square.at(location.row + 1, location.col + 1))
+                }
+                if (board.getPiece(Square.at(location.row + 1, location.col - 1)) != undefined){
+                    posMoves.push(Square.at(location.row + 1, location.col - 1))
+                }
             }
         } else {
-            if (board.getPiece(Square.at(location.row - 1, location.col)) === undefined){
-                posMoves.push(Square.at(location.row - 1, location.col))
-            }
-            if (location.row === 6 
-                && board.getPiece(Square.at(location.row - 1, location.col)) === undefined
-                && board.getPiece(Square.at(location.row - 2, location.col)) === undefined) {
-                posMoves.push(Square.at(location.row - 2, location.col))
+            if (location.row > 0) {
+                if (board.getPiece(Square.at(location.row - 1, location.col)) === undefined){
+                    posMoves.push(Square.at(location.row - 1, location.col))
+                }
+                if (location.row === 6 
+                    && board.getPiece(Square.at(location.row - 1, location.col)) === undefined
+                    && board.getPiece(Square.at(location.row - 2, location.col)) === undefined) {
+                    posMoves.push(Square.at(location.row - 2, location.col))
+                }
+                if (board.getPiece(Square.at(location.row - 1, location.col + 1)) != undefined){
+                    posMoves.push(Square.at(location.row - 1, location.col + 1))
+                }
+                if (board.getPiece(Square.at(location.row - 1, location.col - 1)) != undefined){
+                    posMoves.push(Square.at(location.row - 1, location.col - 1))
+                }
             }
         }
         return posMoves
