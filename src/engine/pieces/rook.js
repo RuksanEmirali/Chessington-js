@@ -8,20 +8,24 @@ export default class Rook extends Piece {
         super(player);
     }
 
+    addMove(posMoves, x, y){
+        posMoves.push(Square.at(x, y))
+    }
+
     getAvailableMoves(board) {
         let location = board.findPiece(this)
         let posMoves = []
         for (let i = 0; i< location.col; i++) {
-            posMoves.push(Square.at(location.row, i))
+            this.addMove(posMoves, location.row, i)
         }
         for (let i = location.col + 1; i< GameSettings.BOARD_SIZE; i++) {
-            posMoves.push(Square.at(location.row, i))
+            this.addMove(posMoves, location.row, i)
         }
         for (let i = 0; i< location.row; i++) {
-            posMoves.push(Square.at(i, location.col))
+            this.addMove(posMoves, i, location.col)
         }
         for (let i = location.row + 1; i< GameSettings.BOARD_SIZE; i++) {
-            posMoves.push(Square.at(i, location.col))
+            this.addMove(posMoves, i, location.col)
         }
         return posMoves;
     }
