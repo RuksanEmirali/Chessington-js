@@ -68,4 +68,17 @@ describe('Knight', () => {
         moves.should.not.deep.include(Square.at(2, 1));
         
     })
+
+    it('can take opponent', () => {
+        const knight = new Knight(Player.WHITE);
+        const opponentPiece = new Rook(Player.BLACK);
+        board.setPiece(Square.at(0, 0), knight);
+        board.setPiece(Square.at(2, 1), opponentPiece);
+
+        const moves = knight.getAvailableMoves(board);
+
+        moves.should.deep.include(Square.at(2, 1));
+        
+    })
+    
 });
