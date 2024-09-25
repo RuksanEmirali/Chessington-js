@@ -8,7 +8,7 @@ export default class Queen extends Piece {
     constructor(player) {
         super(player);
     }
-    
+
     addMove(posMoves, x, y){
         posMoves.push(Square.at(x, y))
     }
@@ -66,6 +66,63 @@ export default class Queen extends Piece {
                 break
             } else {
                 this.addMove(posMoves, i, location.col)
+            }
+        }
+
+        let i = location.row + 1
+        let j = location.col + 1
+        while (i < GameSettings.BOARD_SIZE && j < GameSettings.BOARD_SIZE){
+            if (this.isOccupied(board, i, j)){
+                if (this.isOpponent(board, i , j) && !this.isKing(board, i, j)){
+                    this.addMove(posMoves, i, j)
+                }
+                break
+            } else {
+                this.addMove(posMoves, i, j)
+                i++
+                j++
+            }
+        }
+        i = location.row - 1
+        j = location.col - 1
+        while (i >= 0 && j >= 0){
+            if (this.isOccupied(board, i, j)){
+                if (this.isOpponent(board, i , j) && !this.isKing(board, i, j)){
+                    this.addMove(posMoves, i, j)
+                }
+                break
+            } else {
+                this.addMove(posMoves, i, j)
+                i--
+                j--
+            }
+        }
+        i = location.row - 1
+        j = location.col + 1
+        while (i >= 0 && j < GameSettings.BOARD_SIZE){
+            if (this.isOccupied(board, i, j)){
+                if (this.isOpponent(board, i , j) && !this.isKing(board, i, j)){
+                    this.addMove(posMoves, i, j)
+                }
+                break
+            } else {
+                this.addMove(posMoves, i, j)
+                i--
+                j++
+            }
+        }
+        i = location.row + 1
+        j = location.col - 1
+        while (i < GameSettings.BOARD_SIZE && j >=0){
+            if (this.isOccupied(board, i, j)){
+                if (this.isOpponent(board, i , j) && !this.isKing(board, i, j)){
+                    this.addMove(posMoves, i, j)
+                }
+                break
+            } else {
+                this.addMove(posMoves, i, j)
+                i++
+                j--
             }
         }
         return posMoves;
